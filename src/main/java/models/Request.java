@@ -1,6 +1,6 @@
 package pojo;
 
-public class RequestPojo {
+public class Request {
 
 	private int reqId;
 	private int ep;
