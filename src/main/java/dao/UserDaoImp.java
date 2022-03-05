@@ -17,7 +17,7 @@ public class UserDaoImp implements UserDao {
 	public List<UserPojo> fetchAllAccounts() {
 		Connection conn = DBUtil.obtainConnection();
 		List<UserPojo> userpojo= new ArrayList();
-        String query = "SELECT userid,username,firstname,lastname,email,roleid FROM user_details;";
+        String query = "SELECT user_id,username ,password ,full_name ,email,role_id  FROM users ;";
             PreparedStatement ps;
 			try {
 				ps = conn.prepareStatement(query);
@@ -25,12 +25,12 @@ public class UserDaoImp implements UserDao {
 			       while(rs.next()){
 			    	   userpojo.add(
 		                        new UserPojo(
-		                            rs.getInt("userID"),
+		                            rs.getInt("user_id"),
 		                            rs.getString("username"),
 		                            rs.getString("password"),
-		                            rs.getString("firstname"),
+		                            rs.getString("full_name"),
 		                            rs.getString("email"),
-		                            rs.getInt("roleid")
+		                            rs.getInt("role_id")
 		                ));
 			       }
 			         ps.close();
@@ -45,19 +45,19 @@ public class UserDaoImp implements UserDao {
 		Connection conn = DBUtil.obtainConnection();
 		try {
 			 Statement stmt = conn.createStatement();
-		  String sql = "SELECT * FROM user_details WHERE userID ="+userId;
+		  String sql = "SELECT * FROM users WHERE user_id ="+userId;
 		 
 			
 	          ResultSet rs = stmt.executeQuery(sql);
 
 	          while(rs.next()){
 	              userInfo = new UserPojo(
-		                          rs.getInt("userID"),
+		                          rs.getInt("user_id"),
 		                            rs.getString("username"),
 		                            rs.getString("password"),
-		                            rs.getString("firstname"),
+		                            rs.getString("full_name"),
 		                            rs.getString("email"),
-		                            rs.getInt("roleid"));
+		                            rs.getInt("role_id"));
 	          }
 		} catch (SQLException e) {
 			
@@ -72,7 +72,7 @@ public class UserDaoImp implements UserDao {
 		Connection conn = DBUtil.obtainConnection();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "UPDATE user_details SET email="+userpojo.getEmail()+" WHERE userID="+userpojo.getUserID();
+			String query = "UPDATE users SET email="+userpojo.getEmail()+" WHERE user_id="+userpojo.getUserID();
 			int rows = stmt.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();	
