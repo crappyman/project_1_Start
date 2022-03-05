@@ -18,7 +18,7 @@ static	Connection conn;
 	}
 	
  static Connection	obtainConnection(){
-	String connectionUrl="jdbc:postgresql://localhost:5432/bms3";
+	String connectionUrl="jdbc:postgresql://localhost:5432/req";
 	String userName="postgres";
 	String password="2011";
 	

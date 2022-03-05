@@ -1,6 +1,6 @@
 package pojo;
 
-public class User {
+public class UserPojo {
 	
 	private int userID;
 	private String username;
