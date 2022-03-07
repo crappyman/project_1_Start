@@ -24,4 +24,10 @@ UserDao userdoa=new UserDaoImp();
 		return userdoa.updateAccount(userpojo);
 	}
 
+	@Override
+	public UserPojo login(UserPojo user) {
+		
+		return userdoa.login(user);
+	}
+
 }

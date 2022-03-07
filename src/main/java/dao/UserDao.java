@@ -12,5 +12,8 @@ public interface UserDao {
 	UserPojo fetchAAccount(int userId);
 	
 	UserPojo updateAccount (UserPojo userpojo);
+
+	UserPojo login(UserPojo user);
+	
 	
 }

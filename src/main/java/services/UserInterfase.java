@@ -12,4 +12,6 @@ List<UserPojo> fetchAllAccounts();
 	UserPojo fetchAAccount(int userId);
 	
 	UserPojo updateAccount (UserPojo userpojo);
+	
+	UserPojo login(UserPojo user);
 }

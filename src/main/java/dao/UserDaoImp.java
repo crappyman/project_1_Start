@@ -80,5 +80,36 @@ public class UserDaoImp implements UserDao {
 		
 		return userpojo;
 	}
+	@Override
+	public UserPojo login(UserPojo user) {
+		
+		Connection conn = DBUtil.obtainConnection();
+
+		UserPojo userInfo = new UserPojo();
+
+		String sql = "SELECT * FROM users WHERE username = ? and password = ?";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				userInfo = new UserPojo(rs.getInt("user_id"), 
+						rs.getString("username"),
+						rs.getString("password"),
+						rs.getString("full_name"),
+						rs.getString("email"), 
+						rs.getInt("role_id"));
+			}
+		} catch (Exception ex) {
+
+		}
+		
+
+		return userInfo;
+		
+		
+	}
 
 }
